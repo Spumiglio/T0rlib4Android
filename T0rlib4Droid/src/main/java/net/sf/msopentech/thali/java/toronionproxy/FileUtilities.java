@@ -66,8 +66,7 @@ http://www.gnu.org/licenses/lgpl.html
  */
 package net.sf.msopentech.thali.java.toronionproxy;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.io.EOFException;
 import java.io.File;
@@ -81,7 +80,6 @@ import java.util.zip.ZipInputStream;
 
 public class FileUtilities {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FileUtilities.class);
 
     private FileUtilities() {
     }
@@ -130,7 +128,7 @@ public class FileUtilities {
                 listFilesToLog(child);
             }
         } else {
-            LOG.info(f.getAbsolutePath());
+            System.out.println("ciao");
         }
     }
 

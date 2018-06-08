@@ -1,7 +1,6 @@
 package net.sf.runjva.sourceforge.jsocks.protocol;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -20,7 +19,7 @@ class Socks5Message extends ProxyMessage {
 
 	byte[] data;
 
-	private Logger log = LoggerFactory.getLogger(Socks5Message.class);
+
 
 	/**
 	 * Server error response.
@@ -98,7 +97,6 @@ class Socks5Message extends ProxyMessage {
 		this.host = hostName;
 		this.version = SOCKS_VERSION;
 
-		log.debug("Doing ATYP_DOMAINNAME");
 
 		addrType = SOCKS_ATYP_DOMAINNAME;
 		final byte addr[] = hostName.getBytes();
@@ -139,8 +137,7 @@ class Socks5Message extends ProxyMessage {
 	 * 
 	 * @param in
 	 *            Input stream to read response from.
-	 * @param clinetMode
-	 *            If true read server response, else read client request.
+	 *
 	 * @throws SocksException
 	 *             If server response code is not SOCKS_SUCCESS(0) and reading
 	 *             in client mode, or if any error with protocol occurs.
@@ -175,8 +172,7 @@ class Socks5Message extends ProxyMessage {
 	 * 
 	 * @param in
 	 *            Input stream to read response from.
-	 * @param
-	 *            If true read server response, else read client request.
+	 *
 	 * @throws SocksException
 	 *             If server response code is not SOCKS_SUCCESS(0) and reading
 	 *             in client mode, or if any error with protocol occurs.
@@ -215,7 +211,7 @@ class Socks5Message extends ProxyMessage {
 			host = bytes2IPV6(addr, 0);
 			break;
 		case SOCKS_ATYP_DOMAINNAME:
-			log.debug("Reading ATYP_DOMAINNAME");
+
 			addr = new byte[di.readUnsignedByte()];// Next byte shows the length
 			di.readFully(addr);
 			host = new String(addr);

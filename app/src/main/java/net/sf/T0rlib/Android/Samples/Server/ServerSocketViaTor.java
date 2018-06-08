@@ -6,8 +6,7 @@ import android.content.Context;
 import net.sf.controller.network.AndroidTorRelay;
 import net.sf.controller.network.TorServerSocket;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,7 +18,7 @@ import java.util.Calendar;
 import java.util.concurrent.CountDownLatch;
 
 public class ServerSocketViaTor {
-    private static final Logger LOG = LoggerFactory.getLogger(ServerSocketViaTor.class);
+
     private static final int hiddenservicedirport = 80;
     private static final int localport = 2096;
     private static CountDownLatch serverLatch = new CountDownLatch(2);

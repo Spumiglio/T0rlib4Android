@@ -1,7 +1,6 @@
 package net.sf.runjva.sourceforge.jsocks.protocol;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +56,7 @@ public class SocksSocket extends Socket {
 	protected int localPort, remotePort;
 
 	private Socket directSock = null;
-	private Logger log = LoggerFactory.getLogger(SocksSocket.class);
+
 
 	/**
 	 * Tryies to connect to given host and port using default proxy. If no
@@ -107,8 +106,7 @@ public class SocksSocket extends Socket {
 	 *             <li>Any IO error occured.
 	 *             <li>Any protocol error occured.
 	 *             </ul>
-	 * @throws IOexception
-	 *             if anything is wrong with I/O.
+	 *
 	 * @see Socks5Proxy#resolveAddrLocally
 	 */
 	public SocksSocket(SocksProxyBase p, String host, int port)
@@ -373,7 +371,7 @@ public class SocksSocket extends Socket {
 
 	private void doDirect() throws SocksException {
 		try {
-			log.debug("IP: {}_{}", remoteIP, remotePort);
+
 			directSock = new Socket(remoteIP, remotePort);
 			proxy.out = directSock.getOutputStream();
 			proxy.in = directSock.getInputStream();

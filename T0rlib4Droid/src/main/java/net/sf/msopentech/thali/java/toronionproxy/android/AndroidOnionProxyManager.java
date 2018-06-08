@@ -40,8 +40,7 @@ import android.os.Build;
 
 import net.sf.msopentech.thali.java.toronionproxy.OnionProxyManager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +50,7 @@ import static android.net.ConnectivityManager.CONNECTIVITY_ACTION;
 import static android.net.ConnectivityManager.EXTRA_NO_CONNECTIVITY;
 
 public class AndroidOnionProxyManager extends OnionProxyManager {
-    private static final Logger LOG = LoggerFactory.getLogger(AndroidOnionProxyManager.class);
+
 
     private volatile BroadcastReceiver networkStateReceiver;
     private final Context context;
@@ -89,7 +88,7 @@ public class AndroidOnionProxyManager extends OnionProxyManager {
                     // There is a race condition where if someone calls stop before installAndStartTorOp is done
                     // then we could get an exception because the network state receiver might not be properly
                     // registered.
-                    LOG.info("Someone tried to call stop before we had finished registering the receiver", e);
+
                 }
             }
         }
@@ -104,12 +103,12 @@ public class AndroidOnionProxyManager extends OnionProxyManager {
             try {
                 return Runtime.getRuntime().exec(command).waitFor() == 0;
             } catch(IOException e) {
-                LOG.warn(e.toString(), e);
+                System.out.println(e.toString());
             } catch(InterruptedException e) {
-                LOG.warn("Interrupted while executing chmod");
+
                 Thread.currentThread().interrupt();
             } catch(SecurityException e) {
-                LOG.warn(e.toString(), e);
+                System.out.println(e.toString());
             }
             return false;
         }
@@ -121,7 +120,7 @@ public class AndroidOnionProxyManager extends OnionProxyManager {
             try {
                 if(!isRunning()) return;
             } catch (IOException e) {
-                LOG.info("Did someone call before Tor was ready?", e);
+                System.out.println(e);
                 return;
             }
             boolean online = !i.getBooleanExtra(EXTRA_NO_CONNECTIVITY, false);
@@ -132,11 +131,11 @@ public class AndroidOnionProxyManager extends OnionProxyManager {
                 NetworkInfo net = cm.getActiveNetworkInfo();
                 if(net == null || !net.isConnected()) online = false;
             }
-            LOG.info("Online: " + online);
+            System.out.println("Online");
             try {
                 enableNetwork(online);
             } catch(IOException e) {
-                LOG.warn(e.toString(), e);
+                System.out.println(e.toString());
             }
         }
     }

@@ -33,8 +33,7 @@ import net.sf.controller.network.NetLayerStatus;
 import net.sf.controller.network.ServiceDescriptor;
 import net.sf.freehaven.tor.control.EventHandler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.util.Iterator;
 import java.util.List;
@@ -44,7 +43,7 @@ import java.util.Map;
  * Logs the data we get from notifications from the Tor OP. This is really just meant for debugging.
  */
 public class OnionProxyManagerEventHandler implements EventHandler {
-    private static final Logger LOG = LoggerFactory.getLogger(OnionProxyManagerEventHandler.class);
+
     private ServiceDescriptor hs;
     private NetLayerStatus listener;
     private boolean hsPublished;
@@ -68,24 +67,24 @@ public class OnionProxyManagerEventHandler implements EventHandler {
         String rendQuery = info.get("REND_QUERY");
         if (rendQuery != null) msg += ", service: " + rendQuery;
         if (!path.isEmpty()) msg += ", path: " + shortenPath(path);
-        LOG.info(msg);
+        System.out.println(msg);
     }
 
     @Override
     public void circuitStatus(String status, String circID, String path) {
-        LOG.info("streamStatus: status: " + status + ", circID: " + circID + ", path: " + path);
+        System.out.println("streamStatus: status: " + status + ", circID: " + circID + ", path: " + path);
     }
 
     public void streamStatus(String status, String id, String target) {
-        LOG.info("streamStatus: status: " + status + ", id: " + id + ", target: " + target);
+        System.out.println("streamStatus: status: " + status + ", id: " + id + ", target: " + target);
     }
 
     public void orConnStatus(String status, String orName) {
-        LOG.info("OR connection: status: " + status + ", orName: " + orName);
+        System.out.println("OR connection: status: " + status + ", orName: " + orName);
     }
 
     public void bandwidthUsed(long read, long written) {
-        LOG.info("bandwidthUsed: read: " + read + ", written: " + written);
+        System.out.println("bandwidthUsed: read: " + read + ", written: " + written);
     }
 
     public void newDescriptors(List<String> orList) {
@@ -94,16 +93,16 @@ public class OnionProxyManagerEventHandler implements EventHandler {
         while (iterator.hasNext()) {
             stringBuilder.append(iterator.next());
         }
-        LOG.info("newDescriptors: " + stringBuilder.toString());
+        System.out.println(  stringBuilder.toString());
     }
 
     //fetch Exit Node
     public void message(String severity, String msg) {
-        LOG.info("message: severity: " + severity + ", msg: " + msg);
+        System.out.println("message: severity: " + severity + ", msg: " + msg);
     }
 
     public void unrecognized(String type, String msg) {
-        LOG.info("unrecognized: type: " + type + ", msg: " + msg);
+        System.out.println("unrecognized: type: " + type + ", msg: " + msg);
     }
 
     private String shortenPath(List<String> path) {

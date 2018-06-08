@@ -23,7 +23,8 @@ public class AndroidOnionProxyContext extends OnionProxyContext {
     AMD64,
     ARM,
     MIPS,
-    X86
+    X86,
+    AARCH64
   };
 
   public AndroidOnionProxyContext(Context context, String workingSubDirectoryName) {
@@ -70,8 +71,11 @@ public class AndroidOnionProxyContext extends OnionProxyContext {
     System.out.println(arch);
     String exec = "tor.";
     if (arch.contains("64")) {
-      if (arch.contains("arm"))
+      if (arch.contains("arm") )
         return exec + Arch.ARM64.name().toLowerCase();
+      else if (arch.contains("aarch")){
+        return (exec + Arch.ARM.name().toLowerCase());
+      }
       else if (arch.contains("mips"))
         return exec + Arch.MIPS64.name().toLowerCase();
       else if (arch.contains("86") || arch.contains("amd"))
