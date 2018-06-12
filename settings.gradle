@@ -1,1 +1,1 @@
-include  ':T0rlib4Droid', ':slf4j', 'app'
+include  ':T0rlib4Droid', 'app'
