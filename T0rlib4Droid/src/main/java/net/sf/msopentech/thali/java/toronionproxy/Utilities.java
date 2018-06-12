@@ -15,11 +15,15 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 
 public class Utilities {
-    private static final int READ_TIMEOUT_MILLISECONDS = 30000;
+    private static int READ_TIMEOUT_MILLISECONDS = 30000;
     private static final int CONNECT_TIMEOUT_MILLISECONDS = 60000;
 
 
     private Utilities() {
+    }
+
+    public static void setTIMEOUT(int TIMEOUT_MILLISECONDS){
+        READ_TIMEOUT_MILLISECONDS = TIMEOUT_MILLISECONDS;
     }
 
     public static Socket socks4aSocketConnection(String networkHost, int networkPort, String socksHost, int socksPort)
