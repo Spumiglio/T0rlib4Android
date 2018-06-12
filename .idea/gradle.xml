@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/T0rlib4Droid" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/slf4j" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
