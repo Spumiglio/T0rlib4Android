@@ -14,6 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    // add: Prevent errors in "Generate Signed APK"
     lintOptions {
         abortOnError false
     }
